@@ -1,0 +1,18 @@
+{
+    "ConnectionStrings": {
+      "DefaultConnection": "Your-Database-Connection-String"
+    },
+    "Jwt": {
+      "Key": "Your-JWT-Secret-Key",
+      "Issuer": "Your-JWT-Issuer",
+      "Audience": "Your-JWT-Audience"
+    },
+    "AzureAd": {
+      "Instance": "https://login.microsoftonline.com/",
+      "Domain": "yourdomain.onmicrosoft.com",
+      "TenantId": "your-tenant-id",
+      "ClientId": "your-client-id",
+      "ClientSecret": "your-client-secret",
+      "CallbackPath": "/signin-oidc"
+    }
+  }
