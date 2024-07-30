@@ -53,7 +53,38 @@
 
 ### API Endpoints
 
-Endpoints are still being developed.
+#### Login
+
+- **URL**: `/api/Authentication/login`
+- **Method**: `POST`
+- **Description**: Authenticates a user.
+- **Request Body**:
+  ```json
+  {
+     "email": "string",
+     "password": "string",
+  }
+
+#### Login
+
+- **URL**: `/api/Authentication/register`
+- **Method**: `POST`
+- **Description**: Register a user.
+- **Request Body**:
+  ```json
+  {
+     "userName": "string",
+     "firstName": "string",
+     "lastName": "string",
+     "email": "string", "user@example.com",
+     "password": "string"
+  }
+  
+#### Logout
+
+- **URL**: `/api/Authentication/logout`
+- **Method**: `POST`
+- **Description**: Logout a user.
 
 ### Future Enhancements
 
