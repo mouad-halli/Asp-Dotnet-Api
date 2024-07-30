@@ -4,6 +4,12 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FirstAPI.Controllers
 {
+    /* TO DO:
+     *      - generate email confirmation code and create email confirmation Route
+     *      - generate JWT for users
+     *      - add Two-Factor Authentication
+     */
+
     [Route("api/[controller]")]
     [ApiController]
     public class AuthenticationController : ControllerBase
@@ -18,7 +24,7 @@ namespace FirstAPI.Controllers
             _configuration = configuration;
         }
 
-        [HttpPost]
+        [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] RegisterDTO registerData)
         {
             try
@@ -39,12 +45,14 @@ namespace FirstAPI.Controllers
                     UserName = registerData.UserName
                 };
 
-                IdentityResult result = await _userManager.CreateAsync(user, registerData.Password);
+                var result = await _userManager.CreateAsync(user, registerData.Password);
 
                 if (result.Succeeded)
-                    return Ok(
-                    new { message = "registered successfully" }
-                    );
+                {
+                    //TO DO:
+                    //  - Generate Email confirmation Code and Send it
+                    return Ok( new { message = "registered successfully" });
+                }
 
                 foreach (IdentityError error in result.Errors)
                     ModelState.AddModelError(string.Empty, error.Description);
@@ -57,15 +65,39 @@ namespace FirstAPI.Controllers
             }
         }
 
-        [HttpGet]
+        [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginDTO loginData)
         {
             try
             {
                 if (!ModelState.IsValid)
                     return BadRequest(ModelState);
+
                 var user = await _userManager.FindByEmailAsync(loginData.Email);
-                _signInManager.CheckPasswordSignInAsync()
+
+                if (user == null)
+                    return Unauthorized();
+
+                var result = await _signInManager.PasswordSignInAsync(user, loginData.Password, false, false);
+
+                if (!result.Succeeded)
+                    return Unauthorized();
+
+                return Ok( new { message = "logged in successfully" });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "Internal server error: " + ex.Message);
+            }
+        }
+
+        [HttpPost("logout")]
+        public async Task<IActionResult> Logout()
+        {
+            try
+            {
+                await _signInManager.SignOutAsync();
+                return Ok();
             }
             catch (Exception ex)
             {
