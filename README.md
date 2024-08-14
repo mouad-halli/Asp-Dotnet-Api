@@ -2,7 +2,7 @@
 
 ## Overview
 
-`AspDotnetApi` is a project designed to explore and learn about ASP.NET. This API project provides user authentication functionalities using local username/password and Microsoft 365 accounts. The primary goal of this project is to gain hands-on experience with ASP.NET and its features.
+`AspDotnetApi` is a project designed to explore and learn about ASP.NET. This API project provides user authentication functionalities using cookie and JWT, local username/password and Microsoft 365 accounts. The primary goal of this project is to gain hands-on experience with ASP.NET and its features.
 
 ## Installation
 
