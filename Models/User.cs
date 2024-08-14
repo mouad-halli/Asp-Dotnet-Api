@@ -14,5 +14,6 @@ namespace FirstAPI.Models
         [Required]
         [StringLength(100)]
         public string LastName { get; set; } = string.Empty;
+
     }
 }

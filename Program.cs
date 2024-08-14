@@ -8,12 +8,18 @@ using FirstAPI.Models;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using FirstAPI.interfaces;
 using FirstAPI.services;
+using Microsoft.Identity.Web;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+using System.Security.Claims;
+using Microsoft.IdentityModel.Protocols.OpenIdConnect;
+using System.Text.Json.Serialization;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve );
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -25,13 +31,30 @@ builder.Services.AddDbContext<ApplicationDBContext>(options =>
 );
 
 //IdentityFramework
-builder.Services.AddIdentity<User, IdentityRole>()
+builder.Services.AddIdentity<User, IdentityRole>(options =>
+{
+    options.User.RequireUniqueEmail = true;
+})
     .AddEntityFrameworkStores<ApplicationDBContext>()
     .AddDefaultTokenProviders();
 
 //Jwt configuration
 var jwtIssuer = builder.Configuration.GetSection("Jwt:Issuer").Get<string>() ?? throw new InvalidOperationException("jwt issuer not found");
 var jwtKey = builder.Configuration.GetSection("Jwt:Key").Get<string>() ?? throw new InvalidOperationException("jwt key not found");
+var frontEndUrl = builder.Configuration.GetValue<string>("Frontend:Url") ?? throw new InvalidOperationException("FrontEnd url not found");;
+
+// creating CORS policy
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowFrontEnd", corsBuilder =>
+    {
+        corsBuilder
+        .WithOrigins(frontEndUrl) // Allow specific origin or an array[] of origins
+        .AllowAnyHeader()
+        .AllowAnyMethod()
+        .AllowCredentials(); // for cookie...
+    });
+});
 
 builder.Services.AddAuthentication(options => {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -67,23 +90,31 @@ builder.Services.AddAuthentication(options => {
             {
                 // if cookie named access_token was found it is stored inside a variable named accessToken
                 context.Request.Cookies.TryGetValue("access_token", out var accessToken);
-
                 if (!string.IsNullOrEmpty(accessToken))
                     // setting the token for authorization
                     context.Token = accessToken;
-                
+
                 return Task.CompletedTask;
             },
-            // OnAuthenticationFailed = context =>
-            // {
-            //     return Task.CompletedTask;
-            // }
+            OnAuthenticationFailed = context =>
+            {
+                return Task.CompletedTask;
+            }
         };
-    }
-);
+    })
+    .AddOpenIdConnect(OpenIdConnectDefaults.AuthenticationScheme, options =>
+    {
+        options.Authority = $"https://login.microsoftonline.com/{builder.Configuration["AzureAd:TenantId"]}";
+        options.ClientId = builder.Configuration["AzureAd:ClientId"];
+        options.ClientSecret = builder.Configuration["AzureAd:ClientSecret"]; // Only if required
+        options.ResponseType = OpenIdConnectResponseType.Code; // Use "id_token" for implicit flow or "code" for authorization code flow
+        options.SaveTokens = true; // Save tokens for further use
+        options.CallbackPath = builder.Configuration["AzureAd:CallbackPath"] ?? "/signin-oidc";
+    });
 
 // registering service for dependency injection with AddScoped method
 builder.Services.AddScoped<ITokenService, TokenService>();
+builder.Services.AddScoped<IUserService, UserService>();
 
 
 var app = builder.Build();
@@ -94,6 +125,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors("AllowFrontEnd");
 
 app.UseHttpsRedirection();
 
