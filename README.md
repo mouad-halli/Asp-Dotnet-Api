@@ -2,7 +2,7 @@
 
 ## Overview
 
-`AspDotnetApi` is a project designed to explore and learn about ASP.NET. This API project provides user authentication functionalities using cookie and JWT, local username/password and Microsoft accounts with azureAd. The primary goal of this project is to gain hands-on experience with ASP.NET core and its features.
+`AspDotnetApi` is a project designed to explore and learn about ASP.NET Core. This API project provides user authentication functionalities using cookie and JWT, local username/password and Microsoft accounts with azureAd. The primary goal of this project is to gain hands-on experience with ASP.NET Core and its features.
 
 ## Installation
 
@@ -65,7 +65,7 @@
      "password": "string",
   }
 
-#### Login
+#### Register
 
 - **URL**: `/api/Authentication/register`
 - **Method**: `POST`
@@ -79,8 +79,18 @@
      "email": "string", "user@example.com",
      "password": "string"
   }
+
+#### Microsoft Login
+
+- **URL**: `/api/Authentication/microsoft-login`
+- **Method**: `POST`
+- **Description**: Authenticate user with his microsoft account then he will be redirected to /api/Authentication/microsoft-login-callback.
+
+- **URL**: `/api/Authentication/microsoft-login-callback`
+- **Method**: `POST`
+- **Description**: After a successfull login with microsoft account user will be redirected here to compleate authentication.
   
-#### Logout
+#### Microsoft Login Callback
 
 - **URL**: `/api/Authentication/logout`
 - **Method**: `POST`
