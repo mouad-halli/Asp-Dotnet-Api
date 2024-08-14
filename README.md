@@ -90,7 +90,7 @@
 - **Method**: `POST`
 - **Description**: After a successfull login with microsoft account user will be redirected here to compleate authentication.
   
-#### Microsoft Login Callback
+#### Logout
 
 - **URL**: `/api/Authentication/logout`
 - **Method**: `POST`
