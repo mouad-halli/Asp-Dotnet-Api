@@ -1,8 +1,8 @@
-# AspDotnetApi
+# AspDotnetCoreApi
 
 ## Overview
 
-`AspDotnetApi` is a project designed to explore and learn about ASP.NET Core. This API project provides user authentication functionalities using cookie and JWT, local username/password and Microsoft accounts with azureAd. The primary goal of this project is to gain hands-on experience with ASP.NET Core and its features.
+`AspDotnetCoreApi` is a project designed to explore and learn about ASP.NET Core. This API project provides user authentication functionalities using cookie and JWT, local username/password and Microsoft accounts with azureAd. The primary goal of this project is to gain hands-on experience with ASP.NET Core and its features.
 
 ## Installation
 
@@ -16,13 +16,13 @@
 1. **Clone the Repository**
 
    ```bash
-   git clone https://github.com/mouad-halli/Asp-Dotnet-Api.git aspDotnetApi
+   git clone https://github.com/mouad-halli/Asp-Dotnet-Api.git AspDotnetCoreApi
    ```
 
 2. **Navigate to the Project Directory**
 
    ```bash
-   cd aspDotnetApi
+   cd AspDotnetCoreApi
    ```
    
 4. **Restore Dependencies**
