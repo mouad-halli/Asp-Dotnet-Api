@@ -9,7 +9,7 @@
 ### Prerequisites
 
 - [.NET SDK](https://dotnet.microsoft.com/download) (version 6.0 or later)
-- Microsoft SQL Server (for future database integration)
+- Microsoft SQL Server (for database integration)
 
 ### Setup
 
