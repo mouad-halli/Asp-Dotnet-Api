@@ -89,6 +89,8 @@
 - **URL**: `/api/Authentication/microsoft-login-callback`
 - **Method**: `POST`
 - **Description**: After a successfull login with microsoft account user will be redirected here to compleate authentication.
+
+![test](https://github.com/mouad-halli/AspDotnetCore-Api/raw/main/readMeImgs/AzureAd%20OAuth2%20diagram.png)
   
 #### Logout
 
