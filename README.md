@@ -100,7 +100,16 @@
 
 ### Future Enhancements
 
-- ***AzureAD Integration***: Future versions of this project will include integration with Azure Active Directory for authentication.
+- ***AzureAD Integration***:
+   - **Implemented**:
+      - Future versions of this project will include integration with Azure Active Directory for authentication.
+- ***Authentication and Security***:
+   - Add Two-Factor Authentication.
+   - Add E-mail Confirmation.
+   - Enhance Security by generating JWT Access Token and Refresh Token.
+   - **Implemented**:
+      - Generate JWT Access Token.
+      - Secure Tokens by storing them inside an HTTP-ONLY cookie.
 
 
 
