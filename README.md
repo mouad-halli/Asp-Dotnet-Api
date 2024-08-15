@@ -45,7 +45,8 @@
    dotnet run
    ```
 
-### Configuration( use reference.appSettings.json as a reference to configure your appSettings.json )
+### Configuration
+***NOTE:*** you can use reference.appSettings.json as a reference to configure your appSettings.json.
 - ***Connection Strings:*** Update the appsettings.json file with your Microsoft SQL Server connection string.
 - ***JWT Token:*** Configure the JWT settings in appsettings.json.
 - ***AzureAD:*** Configure AzureAD (openID) settings in appsettings.json.
