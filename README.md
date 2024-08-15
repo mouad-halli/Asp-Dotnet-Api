@@ -2,7 +2,7 @@
 
 ## Overview
 
-`AspDotnetCoreApi` is a project designed to explore and learn about ASP.NET Core. This API project provides user authentication functionalities using cookie and JWT, local username/password and Microsoft accounts with azureAd. The primary goal of this project is to gain hands-on experience with ASP.NET Core and its features.
+`AspDotnetCoreApi` is a project designed to explore and learn about ASP.NET Core. This API project provides user authentication functionalities using cookie and JWT, local username/password and Microsoft accounts with AzureAd. The primary goal of this project is to gain hands-on experience with ASP.NET Core and its features.
 
 ## Installation
 
