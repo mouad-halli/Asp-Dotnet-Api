@@ -105,7 +105,7 @@
    - variables, classes and methods will have readable names.
 
 - ***Configuration***:
-   - Creating a Reference Config file ( reference.appSettings.json ) to help in configuration
+   - Creating a Reference Config file ( reference.appSettings.json ) to help in configuration.
           
 - ***AzureAD Integration***:
    - **Implemented**:
