@@ -103,7 +103,10 @@
 - ***Code Quality***:
    - Configurations, implementations and Controllers Logic will contain descriptif comments to ensure everything is explained and comprehensible.
    - variables, classes and methods will have readable names.
-     
+
+- ***Configuration***:
+   - Creating a Reference Config file ( reference.appSettings.json ) to help in configuration
+          
 - ***AzureAD Integration***:
    - **Implemented**:
       - Future versions of this project will include integration with Azure Active Directory for authentication.
