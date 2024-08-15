@@ -100,9 +100,14 @@
 
 ### Future Enhancements
 
+- ***Code Quality***:
+   - Configurations, implementations and Controllers Logic will contain descriptif comments to ensure everything is explained and comprehensible.
+   - variables, classes and methods will have readable names.
+     
 - ***AzureAD Integration***:
    - **Implemented**:
       - Future versions of this project will include integration with Azure Active Directory for authentication.
+        
 - ***Authentication and Security***:
    - Add Two-Factor Authentication.
    - Add E-mail Confirmation.
