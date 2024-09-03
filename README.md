@@ -83,7 +83,7 @@
 #### Microsoft Login
 
 - **URL**: `/api/Authentication/microsoft-login`
-- **Method**: `POST`
+- **Method**: `GET`
 - **Description**: Authenticate user with his microsoft account then he will be redirected to /api/Authentication/microsoft-login-callback.
 
 - **URL**: `/api/Authentication/microsoft-login-callback`
@@ -95,7 +95,7 @@
 #### Logout
 
 - **URL**: `/api/Authentication/logout`
-- **Method**: `POST`
+- **Method**: `GET`
 - **Description**: Logout a user.
 
 ### Future Enhancements
